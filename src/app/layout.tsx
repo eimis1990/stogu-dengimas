@@ -72,11 +72,11 @@ export const metadata: Metadata = {
       "Profesionalūs stogo darbai Dzūkijoje nuo 2010 m. Stogų dengimas, renovacija, skardinimas. Sąžiningos kainos, kokybiškos medžiagos. Dirbame Varėnoje, Alytuje, Druskininkuose. Marius — Tel. +370 6299 9330",
     images: [
       {
-        url: "/og-image.png",
+        url: `${siteUrl}/og-image.png`,
         width: 1200,
         height: 630,
         alt: "Stogai Dzūkijoje - Profesionalūs stogo darbai",
-        type: "image/jpeg",
+        type: "image/png",
       },
     ],
   },
@@ -85,7 +85,7 @@ export const metadata: Metadata = {
     title: "Stogų Dengimas Dzūkijoje | Profesionalūs stogo darbai",
     description:
       "Stogų dengimas, renovacija, skardinimas Dzūkijoje nuo 2010 m. Sąžiningos kainos. Tel. +370 6299 9330",
-    images: ["/og-image.png"],
+    images: [`${siteUrl}/og-image.png`],
   },
   robots: {
     index: true,
@@ -103,6 +103,14 @@ export const metadata: Metadata = {
     // google: "google-site-verification-code",
   },
   category: "construction",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/manifest.webmanifest",
 };
 
 // Comprehensive JSON-LD structured data
@@ -274,12 +282,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="lt" className={`${inter.variable} ${plusJakarta.variable}`}>
-      <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.webmanifest" />
-      </head>
       <body className="min-h-screen flex flex-col antialiased">
         <script
           type="application/ld+json"
