@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Stogai Dzūkijoje
+
+Modern website for a professional roofing contractor serving the Dzūkija region in southern Lithuania since 2010.
+
+**Live site:** [stogai-dzukijoje.lt](https://stogai-dzukijoje.lt)
+
+## Tech Stack
+
+- **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Deployment:** Vercel
+
+## Features
+
+- Responsive, mobile-first design
+- Smooth scroll animations
+- Interactive quote calculator
+- Photo gallery with lightbox
+- Comprehensive pricing tables
+- Contact form with direct call/email CTAs
+
+## SEO
+
+The site includes comprehensive SEO optimization:
+
+- Semantic HTML structure
+- JSON-LD structured data (RoofingContractor, WebSite, BreadcrumbList, FAQPage)
+- Open Graph and Twitter Card meta tags
+- XML sitemap (`/sitemap.xml`)
+- robots.txt configuration
+- PWA manifest for mobile home screen
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+
+- npm, pnpm, or yarn
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/eimis1990/stogu-dengimas.git
+cd stogu-dengimas
+
+# Install dependencies
+npm install
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+├── public/
+│   ├── gallery/          # Project photos
+│   ├── favicon.ico       # Browser tab icon
+│   ├── icon.svg          # Modern browser icon
+│   ├── apple-touch-icon.png
+│   ├── icon-192.png      # PWA icon
+│   ├── icon-512.png      # PWA splash
+│   ├── logo.png          # Company logo
+│   ├── roof-hero.png     # Hero section image
+│   ├── manifest.webmanifest
+│   ├── robots.txt
+│   └── ...
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx    # Root layout with SEO
+│   │   ├── page.tsx      # Homepage
+│   │   ├── kainos/       # Pricing page
+│   │   └── sitemap.ts    # XML sitemap generator
+│   ├── components/
+│   │   ├── layout/       # Header, Footer
+│   │   ├── sections/     # Page sections
+│   │   └── ui/           # Reusable UI components
+│   └── lib/
+│       └── pricing-data.ts
+└── ...
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Pages
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Route | Description |
+|-------|-------------|
+| `/` | Homepage with services, process, materials, gallery, pricing preview, and contact |
+| `/kainos` | Full pricing tables for all services |
+
+## Environment Variables
+
+No environment variables required for basic functionality.
+
+For analytics or form handling, you may add:
+
+```env
+# .env.local (optional)
+NEXT_PUBLIC_GA_ID=your-google-analytics-id
+```
+
+## TODO
+
+- [ ] Set up Google Search Console verification
+- [ ] Connect contact form to email service
+- [ ] Add Google Analytics
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The easiest way to deploy is via [Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+
+Private project. All rights reserved.
+
+## Contact
+
+**Marius**
+Phone: +370 6299 9330
+Email: stogodarbaijums@gmail.com
+Facebook: [Mariusstogodarbai](https://www.facebook.com/Mariusstogodarbai)
