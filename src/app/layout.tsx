@@ -99,8 +99,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    // Add your verification codes here when available
-    // google: "google-site-verification-code",
+    google: "Gz6LordrRAZ0is0RTFNbPUoOySC0aP-KgWZ9MWtH4Y0",
   },
   category: "construction",
   icons: {
