@@ -13,23 +13,21 @@ export default function Hero() {
     adresas: "",
     data: "",
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setSubmitStatus("success");
-    setIsSubmitting(false);
+    const subject = encodeURIComponent(`Stogo darbų užklausa - ${formData.vardas} ${formData.pavarde}`);
+    const body = encodeURIComponent(
+      `Vardas: ${formData.vardas}\n` +
+      `Pavardė: ${formData.pavarde}\n` +
+      `Telefonas: ${formData.telefonas}\n` +
+      `El. paštas: ${formData.elpastas}\n` +
+      `Adresas: ${formData.adresas}\n` +
+      `Pageidaujama data: ${formData.data || "Nenurodyta"}`
+    );
 
-    // Reset form after success
-    setTimeout(() => {
-      setFormData({ vardas: "", pavarde: "", telefonas: "", elpastas: "", adresas: "", data: "" });
-      setSubmitStatus("idle");
-    }, 3000);
+    window.location.href = `mailto:stogodarbaijums@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -198,27 +196,9 @@ export default function Hero() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary text-white py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-lg hover:bg-primary-hover transition-all disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
+                  className="w-full bg-primary text-white py-3 sm:py-4 rounded-lg font-semibold text-sm sm:text-lg hover:bg-primary-hover transition-all shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 hover:-translate-y-0.5"
                 >
-                  {isSubmitting ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                      </svg>
-                      Siunčiama...
-                    </span>
-                  ) : submitStatus === "success" ? (
-                    <span className="flex items-center justify-center gap-2">
-                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                      Išsiųsta!
-                    </span>
-                  ) : (
-                    "Siųsti užklausą"
-                  )}
+                  Siųsti užklausą
                 </button>
               </form>
             </div>

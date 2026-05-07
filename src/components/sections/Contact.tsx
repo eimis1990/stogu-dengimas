@@ -1,12 +1,10 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -16,8 +14,16 @@ export default function Contact() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    console.log("Form submitted:", formData);
+
+    const subject = encodeURIComponent(`Užklausa nuo ${formData.name}`);
+    const body = encodeURIComponent(
+      `Vardas: ${formData.name}\n` +
+      `Telefonas: ${formData.phone}\n` +
+      `El. paštas: ${formData.email || "Nenurodytas"}\n\n` +
+      `Žinutė:\n${formData.message}`
+    );
+
+    window.location.href = `mailto:stogodarbaijums@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -126,104 +132,68 @@ export default function Contact() {
                 Parašykite mums
               </h3>
 
-              <AnimatePresence mode="wait">
-                {!submitted ? (
-                  <motion.form
-                    key="form"
-                    initial={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onSubmit={handleSubmit}
-                    className="space-y-5"
-                  >
-                    <div>
-                      <label className="block text-sm font-medium text-dark mb-1.5">
-                        Vardas
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="Jūsų vardas"
-                        className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-dark placeholder:text-gray-400"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-dark mb-1.5">
-                        Telefonas
-                      </label>
-                      <input
-                        type="tel"
-                        required
-                        value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+370 ..."
-                        className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-dark placeholder:text-gray-400"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-dark mb-1.5">
-                        El. paštas
-                      </label>
-                      <input
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="jusu@email.lt"
-                        className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-dark placeholder:text-gray-400"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-dark mb-1.5">
-                        Žinutė
-                      </label>
-                      <textarea
-                        required
-                        rows={4}
-                        value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        placeholder="Aprašykite savo projektą: stogo tipas, plotas, vieta..."
-                        className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-dark placeholder:text-gray-400 resize-none"
-                      />
-                    </div>
-                    <button
-                      type="submit"
-                      className="w-full bg-primary text-white py-3.5 rounded-xl font-semibold hover:bg-primary-hover transition-colors shadow-lg shadow-primary/25 cursor-pointer text-lg"
-                    >
-                      Siųsti užklausą
-                    </button>
-                    <p className="text-xs text-medium text-center">
-                      Atsakysime per 24 valandas
-                    </p>
-                  </motion.form>
-                ) : (
-                  <motion.div
-                    key="success"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="py-12 text-center"
-                  >
-                    <div className="w-16 h-16 rounded-full bg-green-100 text-green-600 flex items-center justify-center mx-auto mb-4">
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="20 6 9 17 4 12" />
-                      </svg>
-                    </div>
-                    <h4 className="text-xl font-bold text-dark mb-2">Žinutė išsiųsta!</h4>
-                    <p className="text-medium mb-6">
-                      Ačiū, {formData.name}! Marius susisieks su jumis artimiausiu metu.
-                    </p>
-                    <button
-                      onClick={() => {
-                        setSubmitted(false);
-                        setFormData({ name: "", phone: "", email: "", message: "" });
-                      }}
-                      className="text-primary font-semibold hover:underline cursor-pointer"
-                    >
-                      Siųsti dar vieną užklausą
-                    </button>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label className="block text-sm font-medium text-dark mb-1.5">
+                    Vardas
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Jūsų vardas"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-dark placeholder:text-gray-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-dark mb-1.5">
+                    Telefonas
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    placeholder="+370 ..."
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-dark placeholder:text-gray-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-dark mb-1.5">
+                    El. paštas
+                  </label>
+                  <input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="jusu@email.lt"
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-dark placeholder:text-gray-400"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-dark mb-1.5">
+                    Žinutė
+                  </label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Aprašykite savo projektą: stogo tipas, plotas, vieta..."
+                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-primary focus:outline-none transition-colors text-dark placeholder:text-gray-400 resize-none"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  className="w-full bg-primary text-white py-3.5 rounded-xl font-semibold hover:bg-primary-hover transition-colors shadow-lg shadow-primary/25 cursor-pointer text-lg"
+                >
+                  Siųsti užklausą
+                </button>
+                <p className="text-xs text-medium text-center">
+                  Atsakysime per 24 valandas
+                </p>
+              </form>
             </div>
           </AnimatedSection>
         </div>
