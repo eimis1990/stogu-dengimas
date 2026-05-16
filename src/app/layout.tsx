@@ -4,6 +4,15 @@ import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import {
+  siteUrl,
+  siteName,
+  business,
+  organizationSchema,
+  roofingContractorSchema,
+  websiteSchema,
+  breadcrumbSchema,
+} from "@/lib/seo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -17,8 +26,6 @@ const plusJakarta = Plus_Jakarta_Sans({
   weight: ["600", "700", "800"],
 });
 
-const siteUrl = "https://stogai-dzukijoje.lt";
-
 export const viewport: Viewport = {
   themeColor: "#EC6536",
   width: "device-width",
@@ -30,10 +37,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default: "Stogų Dengimas Dzūkijoje | Profesionalūs stogo darbai nuo 2010 m.",
-    template: "%s | Stogai Dzūkijoje",
+    template: `%s | ${siteName}`,
   },
-  description:
-    "Stogų dengimas, renovacija, skardinimas Dzūkijoje. Profesionalūs stogo darbai Varėnoje, Alytuje, Druskininkuose, Lazdijuose, Trakų rajone. Sąžiningos kainos, kokybiškos medžiagos. Marius — Tel. +370 6299 9330",
+  description: `Stogų dengimas, renovacija, skardinimas Dzūkijoje. Profesionalūs stogo darbai Varėnoje, Alytuje, Druskininkuose, Lazdijuose, Trakų rajone. Sąžiningos kainos, kokybiškos medžiagos. ${business.contactName} — Tel. ${business.phone}`,
   keywords: [
     "stogų dengimas Dzūkijoje",
     "stogo dengimas Alytus",
@@ -49,9 +55,9 @@ export const metadata: Metadata = {
     "plieno čerpės",
     "stogo meistras Dzūkijoje",
   ],
-  authors: [{ name: "Marius", url: siteUrl }],
-  creator: "Stogai Dzūkijoje",
-  publisher: "Stogai Dzūkijoje",
+  authors: [{ name: business.contactName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
   formatDetection: {
     email: true,
     address: true,
@@ -67,10 +73,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "lt_LT",
     url: siteUrl,
-    siteName: "Stogai Dzūkijoje",
+    siteName,
     title: "Stogų Dengimas Dzūkijoje | Profesionalūs stogo darbai nuo 2010 m.",
-    description:
-      "Profesionalūs stogo darbai Dzūkijoje nuo 2010 m. Stogų dengimas, renovacija, skardinimas. Sąžiningos kainos, kokybiškos medžiagos. Dirbame Varėnoje, Alytuje, Druskininkuose. Marius — Tel. +370 6299 9330",
+    description: `Profesionalūs stogo darbai Dzūkijoje nuo 2010 m. Stogų dengimas, renovacija, skardinimas. Sąžiningos kainos, kokybiškos medžiagos. Dirbame Varėnoje, Alytuje, Druskininkuose. ${business.contactName} — Tel. ${business.phone}`,
     images: [
       {
         url: `${siteUrl}/og-image.png`,
@@ -84,8 +89,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Stogų Dengimas Dzūkijoje | Profesionalūs stogo darbai",
-    description:
-      "Stogų dengimas, renovacija, skardinimas Dzūkijoje nuo 2010 m. Sąžiningos kainos. Tel. +370 6299 9330",
+    description: `Stogų dengimas, renovacija, skardinimas Dzūkijoje nuo 2010 m. Sąžiningos kainos. Tel. ${business.phone}`,
     images: [`${siteUrl}/og-image.png`],
   },
   robots: {
@@ -113,173 +117,15 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
 };
 
-// Comprehensive JSON-LD structured data
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "RoofingContractor",
-  "@id": `${siteUrl}/#organization`,
-  name: "Stogai Dzūkijoje",
-  alternateName: "Stogų dengimas Dzūkijoje",
-  url: siteUrl,
-  logo: {
-    "@type": "ImageObject",
-    url: `${siteUrl}/logo.png`,
-    width: 200,
-    height: 200,
-  },
-  image: `${siteUrl}/og-image.png`,
-  telephone: "+37062999330",
-  email: "stogodarbaijums@gmail.com",
-  foundingDate: "2010",
-  description:
-    "Profesionalūs stogų dengimo, renovacijos ir skardinimo darbai Dzūkijoje nuo 2010 metų. Sąžiningos kainos, kokybiškos medžiagos.",
-  slogan: "Profesionalūs stogo darbai nuo 2010 m.",
-  priceRange: "€€",
-  currenciesAccepted: "EUR",
-  paymentAccepted: "Cash, Bank Transfer",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Varėnos miestas",
-    addressLocality: "Varėna",
-    addressRegion: "Alytaus apskritis",
-    postalCode: "65184",
-    addressCountry: "LT",
-  },
-  geo: {
-    "@type": "GeoCoordinates",
-    latitude: 54.2208,
-    longitude: 24.5781,
-  },
-  areaServed: [
-    {
-      "@type": "City",
-      name: "Varėna",
-    },
-    {
-      "@type": "City",
-      name: "Alytus",
-    },
-    {
-      "@type": "City",
-      name: "Druskininkai",
-    },
-    {
-      "@type": "City",
-      name: "Lazdijai",
-    },
-    {
-      "@type": "City",
-      name: "Trakai",
-    },
-    {
-      "@type": "AdministrativeArea",
-      name: "Dzūkija",
-    },
-  ],
-  serviceArea: {
-    "@type": "GeoCircle",
-    geoMidpoint: {
-      "@type": "GeoCoordinates",
-      latitude: 54.2208,
-      longitude: 24.5781,
-    },
-    geoRadius: "100000",
-  },
-  hasOfferCatalog: {
-    "@type": "OfferCatalog",
-    name: "Stogo darbų paslaugos",
-    itemListElement: [
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Stogų dengimas",
-          description: "Šlaitinių ir plokščių stogų dengimas įvairiomis dangomis",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Stogų renovacija",
-          description: "Senų stogų atnaujinimas ir remontas",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Kaminų skardinimas",
-          description: "Profesionalus kaminų skardinimas ir hidroizoliacija",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Lietaus sistemų montavimas",
-          description: "Latakų ir lietvamzdžių sistemų įrengimas",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Stogo šiltinimas",
-          description: "Stogo šiltinimas akmens vata",
-        },
-      },
-    ],
-  },
-  sameAs: ["https://www.facebook.com/Mariusstogodarbai"],
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+37062999330",
-    contactType: "customer service",
-    email: "stogodarbaijums@gmail.com",
-    availableLanguage: ["Lithuanian"],
-    areaServed: "LT",
-  },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    reviewCount: "50",
-    bestRating: "5",
-    worstRating: "1",
-  },
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "@id": `${siteUrl}/#website`,
-  url: siteUrl,
-  name: "Stogai Dzūkijoje",
-  description: "Profesionalūs stogų dengimo darbai Dzūkijoje",
-  publisher: {
-    "@id": `${siteUrl}/#organization`,
-  },
-  inLanguage: "lt-LT",
-};
-
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Pagrindinis",
-      item: siteUrl,
-    },
-  ],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const homeBreadcrumb = breadcrumbSchema([
+    { name: "Pagrindinis", item: "/" },
+  ]);
+
   return (
     <html lang="lt" className={`${inter.variable} ${plusJakarta.variable}`}>
       <head>
@@ -301,9 +147,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify([
-              organizationSchema,
-              websiteSchema,
-              breadcrumbSchema,
+              roofingContractorSchema(),
+              organizationSchema(),
+              websiteSchema(),
+              homeBreadcrumb,
             ]),
           }}
         />

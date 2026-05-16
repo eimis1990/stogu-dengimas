@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import ClientKainos from "@/components/ClientKainos";
-
-const siteUrl = "https://stogai-dzukijoje.lt";
+import {
+  siteUrl,
+  breadcrumbSchema,
+  faqPageSchema,
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Statybos darbų kainos",
@@ -44,7 +47,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Pricing page JSON-LD structured data
 const pricingSchema = {
   "@context": "https://schema.org",
   "@type": "PriceSpecification",
@@ -52,63 +54,33 @@ const pricingSchema = {
   description: "Stogo darbų kainos Dzūkijoje",
 };
 
-const breadcrumbSchema = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Pagrindinis",
-      item: siteUrl,
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Kainos",
-      item: `${siteUrl}/kainos`,
-    },
-  ],
-};
+const breadcrumb = breadcrumbSchema([
+  { name: "Pagrindinis", item: "/" },
+  { name: "Kainos", item: "/kainos" },
+]);
 
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "Kiek kainuoja stogo dengimas Dzūkijoje?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Kompleksinių stogo darbų kainos prasideda nuo 25€/m² už plieno čerpių stogą, 30€/m² už šiferio stogą ir 40€/m² už bituminių čerpių stogą. Kainos priklauso nuo projekto sudėtingumo ir pasirinktos dangos.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Ar kainos nurodytos su medžiagomis?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Ne, kainos nurodytos tik už darbo paslaugas be statybinių medžiagų. Padėsime išsirinkti kainos ir kokybės santykį atitinkančias statybines medžiagas.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Kiek kainuoja kamino skardinimas?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Kamino skardinimo darbų kaina prasideda nuo 280€ už vienetą. Tikslesnę kainą galime pasakyti įvertinę kamino dydį ir sudėtingumą.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Ar suteikiate garantiją darbams?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Taip, atskiriems darbams suteikiame garantiją. Dirbame pagal verslo liudijimą nuo 2010 metų.",
-      },
-    },
-  ],
-};
+const faq = faqPageSchema([
+  {
+    question: "Kiek kainuoja stogo dengimas Dzūkijoje?",
+    answer:
+      "Kompleksinių stogo darbų kainos prasideda nuo 25€/m² už plieno čerpių stogą, 30€/m² už šiferio stogą ir 40€/m² už bituminių čerpių stogą. Kainos priklauso nuo projekto sudėtingumo ir pasirinktos dangos.",
+  },
+  {
+    question: "Ar kainos nurodytos su medžiagomis?",
+    answer:
+      "Ne, kainos nurodytos tik už darbo paslaugas be statybinių medžiagų. Padėsime išsirinkti kainos ir kokybės santykį atitinkančias statybines medžiagas.",
+  },
+  {
+    question: "Kiek kainuoja kamino skardinimas?",
+    answer:
+      "Kamino skardinimo darbų kaina prasideda nuo 280€ už vienetą. Tikslesnę kainą galime pasakyti įvertinę kamino dydį ir sudėtingumą.",
+  },
+  {
+    question: "Ar suteikiate garantiją darbams?",
+    answer:
+      "Taip, atskiriems darbams suteikiame garantiją. Dirbame pagal verslo liudijimą nuo 2010 metų.",
+  },
+]);
 
 export default function KainosPage() {
   return (
@@ -116,11 +88,10 @@ export default function KainosPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([pricingSchema, breadcrumbSchema, faqSchema]),
+          __html: JSON.stringify([pricingSchema, breadcrumb, faq]),
         }}
       />
       <ClientKainos />
     </>
   );
 }
-
