@@ -8,6 +8,8 @@ import {
   serviceAreaCities,
   breadcrumbSchema,
   serviceSchema,
+  ogImages,
+  twitterImages,
 } from "@/lib/seo";
 
 interface PageProps {
@@ -33,6 +35,11 @@ export function generateMetadata({ params }: PageProps): Metadata {
       description: service.description,
       url: canonical,
       type: "article",
+      images: ogImages,
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: twitterImages,
     },
   };
 }

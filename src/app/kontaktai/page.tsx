@@ -6,6 +6,8 @@ import {
   serviceAreaCities,
   breadcrumbSchema,
   roofingContractorSchema,
+  ogImages,
+  twitterImages,
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -19,6 +21,11 @@ export const metadata: Metadata = {
     description: `Skambinkite ${business.contactName} — ${business.phone}. Stogo darbai visoje Dzūkijoje.`,
     url: `${siteUrl}/kontaktai`,
     type: "website",
+    images: ogImages,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: twitterImages,
   },
 };
 

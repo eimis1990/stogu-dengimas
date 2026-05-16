@@ -13,6 +13,23 @@ export const siteUrl = (
 export const siteName = "Stogai Dzūkijoje";
 export const siteShortName = "Stogai Dzūkijoje";
 
+/**
+ * Default Open Graph image. Must be reused on every page that overrides
+ * `openGraph`, because Next.js metadata does not deep-merge `images`.
+ * Absolute URLs are required by Facebook, LinkedIn, WhatsApp, and X scrapers.
+ */
+export const ogImages = [
+  {
+    url: `${siteUrl}/og-image.png`,
+    width: 1200,
+    height: 630,
+    alt: "Stogai Dzūkijoje — profesionalūs stogo darbai",
+    type: "image/png",
+  },
+];
+
+export const twitterImages = [`${siteUrl}/og-image.png`];
+
 /** Business contact details. Single source of truth. */
 export const business = {
   legalName: "Stogai Dzūkijoje",

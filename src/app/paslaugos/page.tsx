@@ -5,6 +5,8 @@ import {
   services,
   business,
   breadcrumbSchema,
+  ogImages,
+  twitterImages,
 } from "@/lib/seo";
 
 export const metadata: Metadata = {
@@ -20,6 +22,11 @@ export const metadata: Metadata = {
       "Stogo dengimas, renovacija, skardinimas, šiltinimas, lietaus sistemos. Profesionalūs darbai Dzūkijoje.",
     url: `${siteUrl}/paslaugos`,
     type: "website",
+    images: ogImages,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: twitterImages,
   },
 };
 

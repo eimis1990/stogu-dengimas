@@ -5,6 +5,8 @@ import {
   breadcrumbSchema,
   faqPageSchema,
   business,
+  ogImages,
+  twitterImages,
 } from "@/lib/seo";
 import { faqItems } from "@/lib/faq-data";
 
@@ -21,6 +23,11 @@ export const metadata: Metadata = {
       "Klausimai ir atsakymai apie stogo dengimą, renovaciją, kainas ir garantijas.",
     url: `${siteUrl}/duk`,
     type: "website",
+    images: ogImages,
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: twitterImages,
   },
 };
 
