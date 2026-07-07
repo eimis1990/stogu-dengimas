@@ -157,6 +157,11 @@ export default function RootLayout({
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <Script
+          src="https://www.loqara.com/widget.js"
+          data-bot-key="8a853a9e95b152352653b6e632ccd838"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
